@@ -19,6 +19,19 @@ RCT_REMAP_METHOD(asyncUpload, asyncUploadWithBucketName:(NSString *)bucketName o
         put.objectKey = objectKey;
         put.uploadingData = data;
         
+		if ([options objectForKey:@"Content-Type"]){
+            put.contentType = [[options objectForKey:@"Content-Type"] stringValue];
+        }
+        
+        if ([options objectForKey:@"Content-MD5"]){
+            put.contentMd5 = [[options objectForKey:@"Content-MD5"] stringValue];
+        }
+        
+        if ([options objectForKey:@"Content-Encoding"]){
+            put.contentEncoding = [[options objectForKey:@"Content-Encoding"] stringValue];
+        }
+		
+		
         // 设置Content-Type，可选
         //        put.contentType = @"application/octet-stream";
         //        // 设置MD5校验，可选
